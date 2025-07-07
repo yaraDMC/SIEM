@@ -1,4 +1,11 @@
-In this Splunk project, I will create a realistic lab where I will demonstrate  log collection (Windows, Linux, Firewalls), correlation rule creation (security alerts),  visual dashboards for forensic analysis, and response automation (e.g., blocking malicious IPs).
+# 🔥 SIEM with Splunk for Cyberattack Detection
+
+## 🎯 Objective
+Real-time security monitoring system capable of detecting:
+- ✅ Brute force attacks
+- ✅ Malware and ransomware
+- ✅ Phishing attempts
+- ✅ Web traffic anomalies
 
 With Splunk correctly installed, we will run it.
 
@@ -12,19 +19,30 @@ Create a folder and download the logs.
 ![](https://github.com/yaraDMC/SIEM/blob/main/descargalogs.png)
 
 
-y subir los logs en splunk
-
+and upload the logs to Splunk
 ![](https://github.com/yaraDMC/SIEM/blob/main/subirlogs.png)
 
-y ya subimos los logs y ya los tenemos
+I used this one. 
 
+
+"wget https://github.com/logpai/loghub/raw/master/Apache/Apache_2k.log"
+
+
+We have already uploaded the logs and now we have them.
 ![](https://github.com/yaraDMC/SIEM/blob/main/logsee.png)
 
+Some SPL
 
-Búsquedas para Detección de Amenazas
-3.1 Detección de Fuerza Bruta (SSH)
+Searches for Threat Detection
+-Brute Force Detection (SSH)
 SPL Query:
+
 index=main sourcetype=access_combined status=401 | stats count by src_ip | where count > 5
 
+-Panel 1: Brute Force Attempts (Bar Chart)
+
+splunkindex=security_logs "Failed login attempt" 
+| timechart span=1h count by src_ip 
+| head 10
 
 
